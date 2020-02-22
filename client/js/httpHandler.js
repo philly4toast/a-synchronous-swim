@@ -2,9 +2,24 @@
 
   const serverUrl = 'http://127.0.0.1:3000';
 
+  const message = require('./server/js/ypressHandler.js')
   //
   // TODO: build the swim command fetcher here
   //
+  const commandFetcher = function() {
+    $.ajax({
+      type: 'GET',
+      data: message,
+      url: serverUrl,
+      cache: false,
+      contentType: false,
+      processData: false,
+      success: () => {
+        // reload the page
+        window.location = window.location.href;
+      }
+    });
+  };
 
   /////////////////////////////////////////////////////////////////////
   // The ajax file uplaoder is provided for your convenience!
@@ -17,7 +32,7 @@
     $.ajax({
       type: 'POST',
       data: formData,
-      url: 'FILL_ME_IN',
+      url: serverUrl,
       cache: false,
       contentType: false,
       processData: false,
